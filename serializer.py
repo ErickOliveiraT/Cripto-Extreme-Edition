@@ -122,3 +122,35 @@ def load_output():
 	content = file.read()
 	file.close()
 	return content
+
+def divide_in_blocks(ent): #Avoid max length problem of 4096 bits key by dividing the input in blocks of 500 bytes 
+	qnt_blocks = int(len(ent)/500)
+	rest = len(ent)%500
+	last = 0
+	cont = 1
+	block = ''
+	file_paths = []
+	for i in range(0,qnt_blocks):
+		filename = 'cripto_tmp'+str(cont)+'.data'
+		file = open(filename,'w')
+		for j in range(last,last+500):
+			file.write(ent[j])
+		file.close()
+		file_paths.append(filename)
+		last += 500
+		cont += 1
+	filename = 'cripto_tmp'+str(cont)+'.data'
+	file = open(filename,'w')
+	for i in range(last,last+rest):
+		file.write(ent[i])
+	file.close()
+	file_paths.append(filename)
+	return file_paths
+
+def save_enc_blocks(outputs):
+	cont = 1
+	for out in outputs:
+		file = open('CriptoOutput'+str(cont)+'.data','wb')
+		file.write(out)
+		file.close()
+		cont += 1
