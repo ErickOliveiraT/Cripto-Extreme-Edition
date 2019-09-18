@@ -113,12 +113,12 @@ def recover_all(password):
 		os.system('del ' + destroyed[i])
 
 def save_output(output):
-	file = open('CriptoOutput.txt','wb')
+	file = open('CriptoOutput.data','wb')
 	file.write(output)
 	file.close()
 
 def load_output():
-	file = open('CriptoOutput.txt','rb')
+	file = open('CriptoOutput.data','rb')
 	content = file.read()
 	file.close()
 	return content
@@ -154,3 +154,12 @@ def save_enc_blocks(outputs):
 		file.write(out)
 		file.close()
 		cont += 1
+
+def get_file_paths(qnt):
+	cont = 1
+	paths = []
+	while cont < qnt+1:
+		filename = 'CriptoOutput'+str(cont)+'.data'
+		paths.append(filename)
+		cont += 1
+	return paths

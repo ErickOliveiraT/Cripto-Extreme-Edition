@@ -30,19 +30,10 @@ def exists_keyFile():
 
 def exists_EncryptedFile():
 	try:
-		file = open('CriptoOutput.txt','rb')
+		file = open('CriptoOutput.data','rb')
 	except:
 		return False
 	return True
-
-def maxLengthAdvise(l):
-	if l > 501:
-		print("\n Unfortunately, this input is too big for Cripto Extreme Edition v2.0. Try a smaller one.\n")
-		print(" Cripto S.A is working to improve this function. Thank you!\n")
-		pause()
-		clear()
-		menu()
-	pass
 
 def menu():
 	print('\t Welcome to Cripto Extreme Edition v2.0\n')
@@ -115,7 +106,7 @@ def menu():
 			tmp_paths = serializer.divide_in_blocks(ardvkOut)
 			enc_blocks = RSA.encrypt_blocks(tmp_paths, public)
 			serializer.save_enc_blocks(enc_blocks)
-			print("\n Text encrypted. The output is in CriptoOutput.data\n")
+			print("\n Text encrypted. The output is all CriptoOutputX.data files. You can zip them with you want.\n")
 			print(" You should hide criptoExtreme_keys.zip file. This contains all the keys to decrypt CriptoOutput.txt\n")
 			pause()
 			clear()
@@ -124,7 +115,7 @@ def menu():
 			ent = ardvkOut.encode('utf8')
 			enc = RSA.encrypt(ent, public)
 			serializer.save_output(enc)
-			print("\n Text encrypted. The output is in CriptoOutput.txt\n")
+			print("\n Text encrypted. The output is in CriptoOutput.data\n")
 			print(" You should hide criptoExtreme_keys.zip file. This contains all the keys to decrypt CriptoOutput.data\n")
 			pause()
 			clear()
@@ -146,25 +137,42 @@ def menu():
 		time.sleep(1)
 		serializer.zip_all()
 		print(' Keys Loaded\n')
-		print(' Loading your encripted file\n')
-		if not exists_EncryptedFile():
-			print(' Error loading your encripted file.\n')
-			print(' Make sure you have CriptoOutput.data file(s) in this folder.\n')
+		files_qnt = int(input(" Amount of encrypt files: "))
+		print('\n Loading your encripted(s) file\n')
+		if files_qnt == 1:
+			if not exists_EncryptedFile():
+				print(' Error loading your encripted file.\n')
+				print(' Make sure you have CriptoOutput.data file(s) in this folder.\n')
+				pause()
+				clear()
+				menu()
+			data = serializer.load_output()
+			print(' Encripted file loaded\n')
+			print(' Decrypting your text\n')
+			dec = RSA.decrypt(data,private)
+			plain = ArDVK64.decode(dec.decode())
+			out = cripto8.decode(plain, r1, r2, r3)
+			print(' Text Decrypted\n\n')
+			print(' Your text:\n')
+			print(out + '\n\n')
 			pause()
 			clear()
 			menu()
-		data = serializer.load_output()
-		print(' Encripted file loaded\n')
-		print(' Decrypting your text\n')
-		dec = RSA.decrypt(data,private)
-		plain = ArDVK64.decode(dec.decode())
-		out = cripto8.decode(plain, r1, r2, r3)
-		print(' Text Decrypted\n\n')
-		print(' Your text:\n')
-		print(out + '\n\n')
-		pause()
-		clear()
-		menu()
+		elif files_qnt > 1:
+			filenames = serializer.get_file_paths(files_qnt)
+			outputs = RSA.decrypt_blocks(filenames, private)
+			print(' Decrypting your text\n')
+			main_ArDVK64_input = ''
+			for out in outputs:
+				main_ArDVK64_input += out
+			dec = ArDVK64.decode(main_ArDVK64_input)
+			plain = cripto8.decode(dec, r1, r2, r3)
+			print(' Text Decrypted\n\n')
+			print(' Your text:\n')
+			print(plain + '\n\n')
+			pause()
+			clear()
+			menu()
 	elif op == '4':
 		sys.exit()
 	elif op != '1' and op != '2' and op != '3' and op != '4':
