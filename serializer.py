@@ -103,6 +103,22 @@ def destroy_all(password):
 	for file in file_paths:
 		os.system('del ' + file)
 
+def destroy_keyfile(password):
+	os.system('tesseract ' + password + ' criptoExtreme_keys.zip criptoExtreme_keys.cripto')
+	del_keyfile()
+
+def recover_keyfile(password):
+	os.system('tesseract ' + password + ' criptoExtreme_keys.cripto criptoExtreme_keys.zip')
+	time.sleep(1)
+
+def del_keyfile():
+	os.system('del criptoExtreme_keys.zip')
+
+def del_keys():
+	os.system('del cripto8_rotors')
+	os.system('del rsa_public')
+	os.system('del rsa_private')
+
 def recover_all(password):
 	destroyed = ['enc_cripto8_rotors'+file_ext,'enc_rsa_public'+file_ext,'enc_rsa_private'+file_ext]
 	new = ['cripto8_rotors'+file_ext,'rsa_public'+file_ext,'rsa_private'+file_ext]

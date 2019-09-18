@@ -23,7 +23,7 @@ def verifyShowing(showing):
 
 def exists_keyFile():
 	try:
-		file = open('criptoExtreme_keys.zip','rb')
+		file = open('criptoExtreme_keys.cripto','rb')
 	except:
 		return False
 	return True
@@ -75,8 +75,8 @@ def menu():
 		print(" RSA Credencials Saved\n")
 		print(" Encrypting your keys\n ")
 		serializer.destroy_all('V3E4N86xftJVu2qp')
-		time.sleep(1)
 		serializer.zip_all()
+		serializer.destroy_keyfile('V3E4N86xftJVu2qp')
 		print(" All keys are now defined. You can now CRIPTO your data!\n")
 		print(" You should hide criptoExtreme_keys.zip. This contains all your keys.\n")
 		pause()
@@ -90,14 +90,12 @@ def menu():
 			print(" If you did, make sure you have criptoExtreme_keys.zip file in this folder.\n")
 			sys.exit()
 		print(' Loading your keys\n ')
+		serializer.recover_keyfile('V3E4N86xftJVu2qp')
 		serializer.unzip_all()
 		serializer.recover_all('V3E4N86xftJVu2qp')
-		time.sleep(1)
 		r1, r2, r3 = serializer.read_cripto8_rotors()
 		public, private = serializer.read_rsa_keys()
-		serializer.destroy_all('V3E4N86xftJVu2qp')
-		time.sleep(1)
-		serializer.zip_all()
+		serializer.del_keys()
 		print(' Keys Loaded\n')
 		ent = input(" Enter your message: ")
 		c8out = cripto8.encode(ent, r1, r2, r3)
@@ -128,14 +126,12 @@ def menu():
 			print(" If you did, make sure you have criptoExtreme_keys.zip file in this folder.\n")
 			sys.exit()
 		print(' Loading your keys\n ')
+		serializer.recover_keyfile('V3E4N86xftJVu2qp')
 		serializer.unzip_all()
 		serializer.recover_all('V3E4N86xftJVu2qp')
-		time.sleep(1)
 		r1, r2, r3 = serializer.read_cripto8_rotors()
 		public, private = serializer.read_rsa_keys()
-		serializer.destroy_all('V3E4N86xftJVu2qp')
-		time.sleep(1)
-		serializer.zip_all()
+		serializer.del_keys()
 		print(' Keys Loaded\n')
 		files_qnt = int(input(" Amount of encrypt files: "))
 		print('\n Loading your encripted(s) file\n')
