@@ -9,13 +9,3 @@ function generateKeys() {
 
 	eel.generateKeys(tesseractKey,r1k,r1s,r2k,r2s,r3k,r3s)(function(ret){console.log(ret)})
 }
-
-function encrypt() {
-	console.log("ola")
-	var tesseractKey = document.getElementById("TesseractPass").value
-	//var keyFile = document.getElementById("file-input").value.toString()
-	var msg = document.getElementById("message").value
-	//console.log(keyFile)
-
-	//eel.encrypt(tesseractKey,msg)(function(ret){console.log(ret)})
-}

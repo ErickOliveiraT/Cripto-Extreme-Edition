@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Cripto EE</title>
+	<title>Cripto Extreme Edition</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
@@ -16,6 +16,8 @@
 	<link rel="stylesheet" type="text/css" href="vendor/noui/nouislider.min.css">
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script type="text/javascript" src="js/dec.js"></script>
+	<script type="text/javascript" src="/eel.js"></script>
 </head>
 <body>
 
@@ -26,21 +28,16 @@
 
 				<div class="wrap-input100 validate-input bg1" data-validate="Please type a Password">
 					<span class="label-input100">Tesseract Password</span>
-					<input class="input100" type="text" name="TesseractPassword" placeholder="Enter a Password">
-				</div>
-				
-				<div class="file-input-class">
-						<span>Choose your Key File</span>
-				        <input type="file" id="keyfile" name="file-input" accept=".cripto">
+					<input class="input100" type="text" id="TesseractPass" placeholder="Enter a Password">
 				</div>
 
-				<div class="file-input-class">
-						<span>Choose your Encrypted File</span>
-				        <input type="file" id="encfile" name="file-input" accept=".dat,.zip">
+				<div class="wrap-input100 validate-input bg1" data-validate="Please type a Password">
+					<span class="label-input100">Number of Encrypted Files</span>
+					<input class="input100" type="text" id="filesCont" placeholder="How many CriptoOutputX.dat files do you have?">
 				</div>
 
 				<div class="container-contact100-form-btn">
-					<button class="contact100-form-btn">
+					<button class="contact100-form-btn" onclick="decrypt()">
 						<span>Decrypt</span>
 					</button>
 				</div>
