@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Cripto EE</title>
+	<title>Cripto Extreme Edition</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
@@ -16,6 +16,8 @@
 	<link rel="stylesheet" type="text/css" href="vendor/noui/nouislider.min.css">
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script type="text/javascript" src="js/backend.js"></script>
+	<script type="text/javascript" src="/eel.js"></script>
 </head>
 <body>
 
@@ -26,36 +28,36 @@
 
 				<div class="wrap-input100 validate-input bg1" data-validate="Please type a Password">
 					<span class="label-input100">Tesseract Password</span>
-					<input class="input100" type="text" name="TesseractPassword" placeholder="Enter a Password">
+					<input class="input100" type="text" id="TesseractPass" placeholder="Enter a Password">
 				</div>
 				<div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Type a number between 1 and 25">
 					<span class="label-input100">R1 Key</span>
-					<input class="input100" type="text" name="keyR1" placeholder="A Number between 1 and 25">
+					<input class="input100" type="text" id="keyR1" placeholder="A Number between 1 and 25">
 				</div>
 				<div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate="Please type a Letter">
 					<span class="label-input100">R1 Position</span>
-					<input class="input100" type="text" name="showingR1" placeholder="A Letter">
+					<input class="input100" type="text" id="showingR1" placeholder="A Letter">
 				</div>
 				<div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Type a number between 1 and 25">
 					<span class="label-input100">R2 Key</span>
-					<input class="input100" type="text" name="keyR2" placeholder="A Number between 1 and 25">
+					<input class="input100" type="text" id="keyR2" placeholder="A Number between 1 and 25">
 				</div>
 				<div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate="Please type a Letter">
 					<span class="label-input100">R2 Position</span>
-					<input class="input100" type="text" name="showingR2" placeholder="A Letter">
+					<input class="input100" type="text" id="showingR2" placeholder="A Letter">
 				</div>
 				<div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Type a number between 1 and 25">
 					<span class="label-input100">R3 Key</span>
-					<input class="input100" type="text" name="keyR3" placeholder="A Number between 1 and 25">
+					<input class="input100" type="text" id="keyR3" placeholder="A Number between 1 and 25">
 				</div>
 				<div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate="Please type a Letter">
 					<span class="label-input100">R3 Position</span>
-					<input class="input100" type="text" name="showingR3" placeholder="A Letter">
+					<input class="input100" type="text" id="showingR3" placeholder="A Letter">
 				</div>
 				
 
 				<div class="container-contact100-form-btn">
-					<button class="contact100-form-btn">
+					<button class="contact100-form-btn" onclick="generateKeys()">
 						<span>Generate Key File</span>
 					</button>
 				</div>
