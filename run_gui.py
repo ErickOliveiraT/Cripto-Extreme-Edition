@@ -2,4 +2,4 @@ import eel
 
 eel.init('gui')
 
-eel.start('index.html', size=(1250,800))
+eel.start('menu.html', size=(1250,800))
